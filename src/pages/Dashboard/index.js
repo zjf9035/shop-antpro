@@ -2,6 +2,7 @@ import React,{useEffect,useState}from 'react'
 import { Statistic, Card, Row, Col } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { fetchDashboard } from '@/services/Dashboard';
+import { useIntl, history, FormattedMessage, SelectLang, useModel } from 'umi';
 
 export default function Dashboard() {
     let [dashboardData,setdashboardData]=useState({});
@@ -9,8 +10,10 @@ export default function Dashboard() {
         const mainPage=await fetchDashboard();
         setdashboardData(mainPage)
     },[])
+    const text=useIntl().formatMessage({id:'flag'})
     return (
         <div className="site-statistic-demo-card">
+            <h2>{text}</h2>
             <Row gutter={16}>
                 <Col span={8}>
                     <Card>
